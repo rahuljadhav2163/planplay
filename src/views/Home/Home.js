@@ -11,19 +11,28 @@ import Plan from "./../../components/Plan/Plan"
         callback : "Buy a Strawberry",
         date : "29-11-2023"
     },
-    {
-        title:"Marrige",
-        plan :"Attend the marrige at Pune.",
-        callback : "Give a bless",
-        date : "5-11-2023"
-    },
-    {
-        title:"Temple",
-        plan :"Go to Bappas temple",
-        callback : "Buy a coconut",
-        date : "11-11-2023"
-    }
 ])
+const [date, setDate]=useState();
+const [title, setTitle]=useState();
+const [plan, setPlan]=useState();
+const [callback, setCallback]=useState();
+
+function addplan(){
+    const obj={
+        
+        date:date,
+        title:title,
+        plan:plan,
+        callback:callback,
+   }
+   setPlanaList([...planList, obj])
+   setDate('')
+   setTitle('')
+   setPlan('')
+   setCallback('')
+
+}
+
 
    return (
 <div className="heading-container">
@@ -55,8 +64,54 @@ import Plan from "./../../components/Plan/Plan"
           <span className="planofu">Add New Plan ➕</span>
 
           <div className="plan-add-container">
-               <span> Plan Title :</span>
-            <input type="text" />
+
+               <span className="input-box"> Plan Title :</span><br/>
+            <input className="input" type="text" placeholder="Title"
+             value={title}
+
+             onChange={(e)=>{
+                 setTitle(e.target.value)
+                 
+             }}
+            /><br/>
+
+
+            <span className="input-box"> Plan :</span><br/>
+            <input className="input" type="text" placeholder="Plan"
+             value={plan}
+
+             onChange={(e)=>{
+                 setPlan(e.target.value)
+                 
+             }}
+            /><br/>
+
+
+            <span className="input-box">Callback :</span><br/>
+            <input className="input" type="text" placeholder="Callback"
+             value={callback}
+
+             onChange={(e)=>{
+                 setCallback(e.target.value)
+                 
+             }}
+            /><br/>
+
+
+            <span className="input-box">Date :</span><br/>
+            <input className="input" type="date" placeholder="Date"
+             value={date}
+
+             onChange={(e)=>{
+                 setDate(e.target.value)
+                 
+             }}
+            /><br/>
+
+
+            <button  onClick={addplan} type="button" className="btn-save">
+                Add Plan <i className="bi bi-clipboard-plus-fill"></i>
+            </button>
 
           </div>
         </div>
