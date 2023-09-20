@@ -1,0 +1,28 @@
+.plan-container-card{
+    width: 470px;
+    height: 110px;
+    position: relative;
+    border: 1px solid black;
+    display: block;
+    margin: 20px;
+    background-color: rgba(250, 235, 215, 0.715);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
+}
+.paln-date{
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    margin-top: 3px;
+
+}
+.plan-title{
+    margin-top: -5px;
+    color: red;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.plan-plan{
+    margin-top: -17px;
+}
