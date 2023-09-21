@@ -2,14 +2,15 @@
     width: 470px;
     height: 110px;
     position: relative;
-    border: 1px solid black;
+    border: 3px solid black;
     display: block;
     margin: 20px;
-    background-color: rgba(250, 235, 215, 0.715);
+    background-color: aliceblue;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.2px 1px white;
     margin-top: 30px;
+    color: black;
 }
 .paln-date{
     position: absolute;
@@ -25,4 +26,10 @@
 }
 .plan-plan{
     margin-top: -17px;
+}
+.remove-btn{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    cursor: pointer;
 }

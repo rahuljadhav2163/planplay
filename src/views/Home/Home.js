@@ -1,6 +1,6 @@
 import logo from "./planplayyy.png"
 import "./Home.css";
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Plan from "./../../components/Plan/Plan"
  
  const Home = () => {
@@ -17,21 +17,63 @@ const [title, setTitle]=useState();
 const [plan, setPlan]=useState();
 const [callback, setCallback]=useState();
 
+useEffect(()=>{
+    const list = JSON.parse(localStorage.getItem('planplay'));
+    setPlanaList(list)
+})
+
+
+const addPlanLocalStorage = (plans)=>{
+    localStorage.setItem('planplay', JSON.stringify(plans))
+}
+
+
 function addplan(){
+
+    const randomId = Math.floor(Math.random()*1000);
     const obj={
-        
+        id : randomId,
         date:date,
         title:title,
         plan:plan,
         callback:callback,
    }
+
+   const newPlanList = [...planList , obj]
+
+   setPlanaList(newPlanList)
+
+
    setPlanaList([...planList, obj])
    setDate('')
    setTitle('')
    setPlan('')
    setCallback('')
 
+   addPlanLocalStorage(newPlanList);
+
+};
+
+ const  removeplan = (id) =>{
+    let index;
+
+    planList.forEach((plan,i)=>{
+        if(plan.id==id){
+            index = i;
+        }
+    })
+
+   
+    const tempArr = planList;
+    tempArr.splice(index,1);
+
+    
+
+    setPlanaList([...tempArr])
+
+    addPlanLocalStorage(tempArr)
 }
+
 
 
    return (
@@ -51,9 +93,9 @@ function addplan(){
                   
                   planList.map((planItem , index)=>
                   {
-                        const {title, date , plan , callback} = planItem;
+                        const {id, title, date , plan , callback} = planItem;
 
-                        return <Plan title={title} date={date} plan={plan} callback={callback}/>
+                        return <Plan key={index} id={id} title={title} date={date} plan={plan} callback={callback} removeplan={removeplan} />
                   })
 
             }
@@ -61,7 +103,9 @@ function addplan(){
 
         <div className="textofcontent">
           
-          <span className="planofu">Add New Plan ➕</span>
+                  
+           <span className="planofu">Add New Plan <span className="btn-addd"> <i class="bi bi-file-earmark-plus"></i></span></span>
+
 
           <div className="plan-add-container">
 
