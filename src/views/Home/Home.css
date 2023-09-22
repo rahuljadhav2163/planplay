@@ -93,6 +93,11 @@
 .containerforscroll::-webkit-scrollbar{
     width: 1px;
 }
+.footer-container{
+    background-color: red;
+    height: 13px;
+    margin-top: 15px;
+}
 @media screen and (max-width:600px){
 
 

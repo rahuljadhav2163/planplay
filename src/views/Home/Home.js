@@ -34,7 +34,7 @@ const Home = () => {
 
     const checkField = ()=>{
         if(!title ){
-            showToast('Please Fill Title..!', 'alert', 3000);
+            showToast('Please Fill All the fields..!', 'alert', 3000);
             return false;
         }
         if(!plan ){
@@ -265,10 +265,13 @@ const Home = () => {
                 </div>
 
             </div>
+            <div className="footer-container">
+
+            </div>
+
         </div>
 
-
-
+         
     )
 }
 
