@@ -1,5 +1,5 @@
 .plan-container-card{
-    width: 470px;
+    width: 540px;
     height: 110px;
     position: relative;
     border: 3px solid black;
@@ -31,5 +31,11 @@
     position: absolute;
     bottom: 5px;
     right: 5px;
+    cursor: pointer;
+}
+.edit-btn{
+    position: absolute;
+    bottom: 5px;
+    right: 45px;
     cursor: pointer;
 }

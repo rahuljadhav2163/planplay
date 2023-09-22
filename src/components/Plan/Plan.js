@@ -2,7 +2,7 @@ import React from 'react';
 import "./Plan.css";
 
 
-const Plan = ({title,plan,callback,date,id,removeplan}) => {
+const Plan = ({title,plan,callback,date,id,removeplan,updatePlan}) => {
     
   return (
     <div className='plan-container-card'>
@@ -16,8 +16,15 @@ const Plan = ({title,plan,callback,date,id,removeplan}) => {
           removeplan(id);
         }}
         ><i class="bi bi-trash3-fill"></i></span>
+
+<span className='edit-btn'
+        onClick={()=>{
+          updatePlan(id);
+        }}
+        ><i class="bi bi-pencil-square"></i></span>
         </div>
   )
 }
+
 
 export default Plan
