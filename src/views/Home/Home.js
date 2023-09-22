@@ -1,5 +1,6 @@
 import logo from "./planplayyy.png"
 import "./Home.css";
+import showToast from 'crunchy-toast';
 import React, { useEffect, useState } from 'react'
 import Plan from "./../../components/Plan/Plan"
 
@@ -31,8 +32,33 @@ const Home = () => {
     }
 
 
-    function addplan() {
+    const checkField = ()=>{
+        if(!title ){
+            showToast('Please Fill Title..!', 'alert', 3000);
+            return false;
+        }
+        if(!plan ){
+            showToast('Please Fill Plan..!', 'alert', 3000);
+            return false;
+        }
+        if(!callback ){
+            showToast('Please Fill Callback..!', 'alert', 3000);
+            return false;
+        }
+        if(!date ){
+            showToast('Please Fill Date..!', 'alert', 3000);
+            return false;
+        }
+        return true;
+    }
 
+
+
+    function addplan() {
+       
+        if(checkField() === false){
+            return;
+        }
         const randomId = Math.floor(Math.random() * 1000);
         const obj = {
             id: randomId,
@@ -56,7 +82,7 @@ const Home = () => {
         addPlanLocalStorage(newPlanList);
 
         
-
+        showToast('Plan Added Succesfully..!', 'success', 3000);
     };
 
     const updatePlan = (id) => {
@@ -76,6 +102,11 @@ const Home = () => {
     }
 
     const updatePlanInfo = () => {
+
+        if(checkField() === false){
+            return;
+        }
+
         let indexUpdate;
         planList.forEach((plan, i) => {
             if (plan.id === id) {
@@ -95,6 +126,8 @@ const Home = () => {
         setPlanaList([...tempArr])
 
         addPlanLocalStorage(tempArr)
+
+        showToast('Plan Update Succesfully..!', 'warning', 3000);
           
         setId(0);
         setDate('');
@@ -126,6 +159,8 @@ const Home = () => {
         setPlanaList([...tempArr])
 
         addPlanLocalStorage(tempArr)
+
+        showToast('Plan Delete Succesfully..!', 'alert', 3000);
     }
 
 
