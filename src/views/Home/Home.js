@@ -19,33 +19,33 @@ const Home = () => {
     const [callback, setCallback] = useState();
     const [isEdit, setIsEdit] = useState(false);
     const [id, setId] = useState(0);
+
+
     useEffect(() => {
         const list = JSON.parse(localStorage.getItem('planplay'));
-        setPlanaList(list)
+        if (Array.isArray(list)) {
+            setPlanaList(list);
+        }
     })
-
-
-
 
     const addPlanLocalStorage = (plans) => {
         localStorage.setItem('planplay', JSON.stringify(plans))
     }
 
-
-    const checkField = ()=>{
-        if(!title ){
+    const checkField = () => {
+        if (!title) {
             showToast('Please Fill All the fields..!', 'alert', 3000);
             return false;
         }
-        if(!plan ){
+        if (!plan) {
             showToast('Please Fill Plan..!', 'alert', 3000);
             return false;
         }
-        if(!callback ){
+        if (!callback) {
             showToast('Please Fill Callback..!', 'alert', 3000);
             return false;
         }
-        if(!date ){
+        if (!date) {
             showToast('Please Fill Date..!', 'alert', 3000);
             return false;
         }
@@ -55,8 +55,8 @@ const Home = () => {
 
 
     function addplan() {
-       
-        if(checkField() === false){
+
+        if (checkField() === false) {
             return;
         }
         const randomId = Math.floor(Math.random() * 1000);
@@ -72,8 +72,6 @@ const Home = () => {
 
         setPlanaList(newPlanList)
 
-
-        setPlanaList([...planList, obj])
         setDate('')
         setTitle('')
         setPlan('')
@@ -81,7 +79,6 @@ const Home = () => {
 
         addPlanLocalStorage(newPlanList);
 
-        
         showToast('Plan Added Succesfully..!', 'success', 3000);
     };
 
@@ -103,7 +100,7 @@ const Home = () => {
 
     const updatePlanInfo = () => {
 
-        if(checkField() === false){
+        if (checkField() === false) {
             return;
         }
 
@@ -114,12 +111,12 @@ const Home = () => {
             }
         })
         const tempArr = planList;
-        tempArr[indexUpdate]={
-            id : id,
-            plan : plan,
-            callback : callback,
-            date : date,
-            title:title
+        tempArr[indexUpdate] = {
+            id: id,
+            plan: plan,
+            callback: callback,
+            date: date,
+            title: title
 
         }
 
@@ -128,7 +125,7 @@ const Home = () => {
         addPlanLocalStorage(tempArr)
 
         showToast('Plan Update Succesfully..!', 'warning', 3000);
-          
+
         setId(0);
         setDate('');
         setTitle('');
@@ -136,10 +133,6 @@ const Home = () => {
         setCallback('');
         setIsEdit(false);
     }
-
-
-
-
 
     const removeplan = (id) => {
         let index;
@@ -150,14 +143,10 @@ const Home = () => {
             }
         })
 
-
         const tempArr = planList;
         tempArr.splice(index, 1);
 
-
-
         setPlanaList([...tempArr])
-
         addPlanLocalStorage(tempArr)
 
         showToast('Plan Delete Succesfully..!', 'alert', 3000);
@@ -176,18 +165,18 @@ const Home = () => {
             <div className="container-for-flex">
 
                 <div className="textofcontent">
-                    
+
                     <span className="planofu"> Your Plan 🥂</span>
                     <div className="containerforscroll">
-                    {
+                        {
 
-                        planList.map((planItem, index) => {
-                            const { id, title, date, plan, callback } = planItem;
+                            planList?.map((planItem, index) => {
+                                const { id, title, date, plan, callback } = planItem;
 
-                            return <Plan key={index} id={id} title={title} date={date} plan={plan} callback={callback} removeplan={removeplan} updatePlan={updatePlan} />
-                        })
+                                return <Plan key={index} id={id} title={title} date={date} plan={plan} callback={callback} removeplan={removeplan} updatePlan={updatePlan} />
+                            })
 
-                    }
+                        }
                     </div>
                 </div>
 
@@ -249,14 +238,14 @@ const Home = () => {
 
                         <div>
                             {
-                             
-                               isEdit?   <button onClick={updatePlanInfo} type="button" className="btn-save">
-                               Update <i class="bi bi-bootstrap-reboot"></i>
-                           </button>:<button onClick={addplan} type="button" className="btn-save">
-                               Add Plan <i className="bi bi-clipboard-plus-fill"></i>
-                           </button>
-                                    
-                                 
+
+                                isEdit ? <button onClick={updatePlanInfo} type="button" className="btn-save">
+                                    Update <i class="bi bi-bootstrap-reboot"></i>
+                                </button> : <button onClick={addplan} type="button" className="btn-save">
+                                    Add Plan <i className="bi bi-clipboard-plus-fill"></i>
+                                </button>
+
+
                             }
 
                         </div>
@@ -271,7 +260,7 @@ const Home = () => {
 
         </div>
 
-         
+
     )
 }
 
